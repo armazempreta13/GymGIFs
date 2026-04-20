@@ -1,0 +1,196 @@
+export const siteConfig = {
+  seo: {
+    title: "GymGIFs | +2.000 Exercícios em HD",
+    description: "A maior biblioteca de GIFs de exercícios do Brasil. Otimize suas planilhas de academia, consultoria online e redes sociais com animações de execução perfeita.",
+    url: "https://gymgifs.com.br",
+    themeColor: "#0F0F0F",
+    keywords: ["gifs de treino", "exercícios academia", "personal trainer", "treino funcional blur", "consultoria fitness online", "movimentos biomecânica", "hiit", "crossfit gifs", "calistenia animação"],
+    openGraph: {
+      type: "website",
+      locale: "pt_BR",
+      url: "https://gymgifs.com.br",
+      title: "GymGIFs | A Maior Biblioteca de Exercícios",
+      description: "Baixe +2.000 GIFs com execuções perfeitas. Acesso vitalício imediato. Essencial para personal trainers, estudantes e criadores de conteúdo.",
+      siteName: "GymGIFs",
+      images: [
+        {
+          url: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=1200&h=630&q=80",
+          width: 1200,
+          height: 630,
+          alt: "Coleção de GIFs Fitness Premium em Alta Resolução",
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "GymGIFs",
+      description: "+2.000 GIFs de execução de treinos em alta qualidade.",
+      images: ["https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=1200&h=630&q=80"]
+    }
+  },
+  global: {
+    checkoutUrl: "https://pay.kirvano.com/SEU_CHECKOUT_AQUI", // Link centralizado para o checkout
+  },
+  hero: {
+    socialProof: {
+      stars: "⭐ 4.9/5 por +2.400 praticantes",
+      text: "🔥 Usado diariamente para treinar com segurança e técnica"
+    },
+    headline: "Pare de treinar errado — aprenda a execução perfeita com 2.000+ GIFs na palma da mão",
+    subtitle: "Chega de depender de instrutor ou vídeos demorados. Tenha acesso a uma biblioteca imediata, separada por músculos, e garanta resultados mais rápidos sem se machucar.",
+    benefits: [
+      "2.000+ execuções perfeitas (acesso rápido pelo celular)",
+      "Proteja sua lombar e articulações treinando certo",
+      "Acesso vitalício — pague uma vez e leve pra academia sempre"
+    ],
+    ctaPrimary: "LIBERAR ACESSO IMEDIATO",
+    ctaPrimarySub: "🔒 Acesso liberado automaticamente após o pagamento",
+    urgency: {
+      title: "🔥 Oferta especial disponível hoje",
+      subtitle: "⏳ Acesso vitalício com condição promocional por tempo limitado"
+    },
+    valueAnchor: "Mais de 2.000 exercícios organizados em um só lugar → economize centenas de horas de busca e montagem de treino",
+    images: [
+      "https://i.ibb.co/WpDg39n6/e8770ea76dd3.jpg",
+      "https://i.ibb.co/zVLSTWwJ/f61fbbbbd1e0.jpg",
+      "https://i.ibb.co/NgJxCS1x/744cd7a913a0.jpg",
+      "https://i.ibb.co/Xr1Q7s5T/0fd72c1b8941.jpg"
+    ]
+  },
+  targetAudience: {
+    title: "Para quem é o GymGIFs?",
+    cards: [
+      { icon: "dumbbell", title: "Praticantes de Focados", desc: "Melhore sua conexão mente-músculo e garanta uma hipertrofia de verdade." },
+      { icon: "user", title: "Iniciantes", desc: "Aprenda o movimento correto desde o primeiro dia, ganhe confiança treinando sozinho." },
+      { icon: "camera", title: "Treino em Casa", desc: "Execute movimentos funcionais impecáveis na sala de casa, livres de risco." },
+      { icon: "graduation-cap", title: "Entusiastas", desc: "Estude o mapa motor e otimize suas séries e repetições de forma independente." }
+    ]
+  },
+  productPreview: {
+    title: "Veja exatamente o que você vai receber",
+    subtitle: "Esqueça imagens estáticas. Dê vida aos seus treinos com animações perfeitas, separadas carinhosamente em pastas por modalidade.",
+    categories: [
+      { 
+        title: "Pessoas Reais (1000 GIFs)", 
+        bullets: ["Exercícios em estúdio fotográfico", "Academia, Funcional e Alongamento", "Ideal para treinos visuais 100% realistas"],
+        image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: false
+      },
+      { 
+        title: "Bonecos 3D - Academia (497 GIFs)", 
+        bullets: ["Máquinas e peso livre", "Organizado por músculos (Peito, Costas, etc)", "Bônus especial de exercícios de Cardio"],
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: true
+      },
+      { 
+        title: "Funcional e HIIT (196 GIFs)", 
+        bullets: ["Alta intensidade e resistência", "Movimentos corporais dinâmicos", "Queima de gordura e cardiorrespiratório"],
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: true
+      },
+      { 
+        title: "Mobilidade e Alongamento (136 GIFs)", 
+        bullets: ["Prevenção aguda de lesões", "Alívio de tensão articular e muscular", "Rotinas de soltura pré e pós-treino"],
+        image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: true
+      },
+      { 
+        title: "Calistenia em Barras (122 GIFs)", 
+        bullets: ["Treinamento 100% com peso corporal", "Domínio de Força e Agilidade", "Iniciante ao Avançado (Skills)"],
+        image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: true
+      },
+      { 
+        title: "Treino Crossfit (67 GIFs)", 
+        bullets: ["Movimentos de LPO (Levantamento de Peso)", "Caixas, Cordas navais e Kettlebells", "Resistência de alta performance"],
+        image: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=600&h=400&q=80",
+        is3D: true
+      },
+    ],
+    bonusTitle: "E tem mais chegando...",
+    bonusDesc: "Você recebe pastas adicionais secretas e acesso livre a atualizações futuras. De graça!"
+  },
+  advantages: {
+    title: "Por que esse pacote é indispensável?",
+    items: [
+      "Arquivos nomeados e categorizados metodicamente",
+      "Pode ser usado no celular, PC, planilhas ou apps",
+      "Alta resolução pronta para posts no Instagram",
+      "Didática instantânea que seu aluno entende na hora",
+      "Mostra o ângulo e a amplitude perfeita da ação",
+      "Economia absurda de tempo e pesquisa no Google",
+      "Nunca expira (Baixe novamente quando quiser)",
+      "Zero mensalidade — o material é seu!"
+    ]
+  },
+  testimonials: {
+    title: "O que os nossos alunos estão falando",
+    screenshots: [
+      "https://i.ibb.co/M5k2gRNw/1.jpg",
+      "https://i.ibb.co/tMJsTKkX/2.jpg",
+      "https://i.ibb.co/Ys4G3dv/3.jpg",
+      "https://i.ibb.co/WWQwfM6S/4.jpg",
+      "https://i.ibb.co/JWk7xnL5/5.jpg",
+      "https://i.ibb.co/5hyrfqDd/6.jpg"
+    ]
+  },
+  countdown: {
+    text: "ACABAM HOJE AS VAGAS COM DESCONTO:"
+  },
+  pricing: {
+    title: "Garanta seu Acesso Imediato",
+    mainCard: {
+      title: "COMBO COMPLETO",
+      subtitle: "Todas as pastas de todas as modalidades",
+      popularTag: "🔥 MAIS VENDIDO / MELHOR CUSTO",
+      oldPrice: "R$ 197,00",
+      price: "47",
+      cents: ",90",
+      paymentMethod: "à vista no PIX ou parcele em até 5x",
+      features: [
+        "1000 GIFs com Pessoas Reais",
+        "Todos os +1000 GIFs de Bonecos 3D",
+        "Alta qualidade e Fundo Transparente",
+        "Acesso Vitalício Garantido",
+        "BÔNUS: Direito a atualizações grátis"
+      ],
+      ctaText: "QUERO O COMBO COMPLETO",
+      link: "https://pay.kirvano.com/SEU_CHECKOUT_COMBO_AQUI",
+      guarantee: "Garantia de 7 dias"
+    },
+    avulsoCards: [
+      {
+        title: "APENAS PESSOAS REAIS",
+        price: "29",
+        cents: ",90",
+        features: ["1000 GIFs Pessoas Reais", "Acesso vitalício"],
+        link: "https://pay.kirvano.com/SEU_CHECKOUT_AVULSO_REAIS_AQUI"
+      },
+      {
+        title: "APENAS BONECOS 3D",
+        price: "29",
+        cents: ",90",
+        features: ["Todas as modalidades 3D", "Acesso vitalício"],
+        link: "https://pay.kirvano.com/SEU_CHECKOUT_AVULSO_3D_AQUI"
+      }
+    ]
+  },
+  faq: {
+    title: "Dúvidas Frequentes",
+    items: [
+      { q: "Como recebo o acesso?", a: "Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link direto e seguro para baixar todo o material ou acessar via nuvem." },
+      { q: "Tem mensalidade?", a: "De forma alguma. O pagamento é único e o acesso é vitalício. Você pode acessar os arquivos onde e quando quiser, de sua propriedade perpétua." },
+      { q: "Posso usar nas minhas planilhas de alunos?", a: "Sim! Esse é o maior objetivo. Você tem total liberdade de uso para embutir no Excel, Google Sheets, Notion, apps de treino e muito mais." },
+      { q: "E se eu não gostar?", a: "Temos uma garantia blindada de 7 dias. Se os GIFs não agregarem no seu trabalho, devolvemos cada centavo sem burocracia." }
+    ]
+  },
+  finalCta: {
+    title: "Pronto para profissionalizar seus treinos?",
+    subtitle: "Clique no botão abaixo, garanta o desconto especial e comece a baixar os seus arquivos nos próximos 2 minutos.",
+    buttonText: "QUERO O MATERIAL AGORA"
+  },
+  footer: {
+    copyright: "© 2026 GymGIFs. Todos os direitos reservados.",
+    disclaimer: "Este site não é afiliado ao Facebook, Google, ou suas entidades. Todo conteúdo após saída destas redes é responsabilidade exclusiva de nossos gestores."
+  }
+};
