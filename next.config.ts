@@ -32,14 +32,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'export',
+  // OpenNext (Cloudflare Workers) expects a standalone output folder.
+  output: "standalone",
   serverExternalPackages: [], // Keep standard fields
-  // In Next.js 15, devIndicators and similar features are separate.
-  // The warning is harmless in production since export is static, just removing invalid prop
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+    // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
         ignored: /.*/,
