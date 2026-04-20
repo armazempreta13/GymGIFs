@@ -1,0 +1,464 @@
+﻿"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { 
+  CheckCircle, 
+  Check, 
+  Dumbbell, 
+  Camera, 
+  User, 
+  GraduationCap, 
+  ChevronDown, 
+  ShieldCheck, 
+  Lock,
+  Gift
+} from "lucide-react";
+
+// For performance, defer heavy interactivity sections
+const CountdownBanner = dynamic(() => Promise.resolve(({ timeLeft }: any) => {
+  return (
+    <div className="bg-[#00E676] text-[#0F0F0F] py-4 px-6 text-center shadow-[0_0_20px_rgba(0,230,118,0.2)]">
+      <div className="font-bold text-sm md:text-base flex flex-wrap justify-center items-center gap-4 tracking-tight">
+        <span>🕒 Acabam hoje as vagas</span>
+        <div className="flex gap-2">
+          {Object.entries(timeLeft).map(([unit, val]) => (
+            <div key={unit} className="bg-[#0F0F0F] text-white w-10 h-10 flex items-center justify-center rounded-lg tabular-nums shadow-inner">
+               {(val as number).toString().padStart(2, '0')}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}), { ssr: false });
+
+const Pricing = dynamic(() => Promise.resolve(() => {
+  const { mainCard, avulsoCards } = siteConfig.pricing;
+  return (
+    <section id="pricing" className="py-24 px-6 max-w-[1100px] mx-auto text-center">
+      <h2 className="text-[32px] font-bold text-center mb-16">{siteConfig.pricing.title}</h2>
+      
+      {/* COMBO COMPLETO */}
+      <div className="bg-[#1A1A1A] border border-[#00E676]/50 rounded-[32px] p-8 md:p-12 mb-10 relative shadow-[0_0_40px_rgba(0,230,118,0.15)]">
+        {mainCard.popularTag && (
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#00E676] text-[#0F0F0F] font-bold text-sm px-6 py-2 rounded-full uppercase tracking-wider animate-[pulse_2s_infinite] shadow-[0_0_20px_rgba(0,230,118,0.4)] whitespace-nowrap">
+            {mainCard.popularTag}
+          </div>
+        )}
+        <div className="grid md:grid-cols-2 gap-12 items-center text-left">
+          <div>
+             <h3 className="text-3xl font-bold mb-2 text-[#00E676]">{mainCard.title}</h3>
+             <p className="text-[#AAAAAA] mb-8">{mainCard.subtitle}</p>
+             <ul className="space-y-4 mb-4">
+               {mainCard.features.map((k, i) =>(
+                 <li key={i} className="flex gap-3 items-center">
+                    <CheckCircle className="w-6 h-6 flex-shrink-0 text-[#00E676]" />
+                    <span className="font-medium text-lg text-white/90">{k}</span>
+                 </li>
+               ))}
+             </ul>
+          </div>
+          <div className="bg-[#0F0F0F] p-8 rounded-2xl text-center border border-white/5 flex flex-col justify-center items-center">
+             <span className="line-through text-[#AAAAAA] text-lg block mb-2">De {mainCard.oldPrice} por só</span>
+             <div className="text-[64px] font-bold leading-none mb-4 flex items-start justify-center">
+                <span className="text-2xl mt-3 mr-2">R$</span>{mainCard.price}<span className="text-2xl mt-3">{mainCard.cents}</span>
+             </div>
+             <p className="text-[#AAAAAA] text-sm mb-8">{mainCard.paymentMethod}</p>
+             <a href={mainCard.link} className="bg-[#00E676] text-[#0F0F0F] font-extrabold px-8 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full text-lg shadow-[0_0_20px_rgba(0,230,118,0.3)] block">
+               {mainCard.ctaText}
+             </a>
+             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-[#AAAAAA] font-medium bg-white/5 px-4 py-2 rounded-full">
+               <ShieldCheck className="w-5 h-5 text-[#00E676]"/> 
+               {mainCard.guarantee}
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* AVULSOS */}
+      <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+         {avulsoCards.map((av, index) =>(
+            <div key={index} className="bg-[#1A1A1A] border border-[rgba(255,255,255,0.05)] rounded-2xl p-6 text-left hover:bg-[rgba(255,255,255,0.02)] transition-colors flex flex-col h-full">
+              <h4 className="text-white font-bold text-lg mb-6">{av.title}</h4>
+              <ul className="space-y-3 mb-8 flex-1">
+                 {av.features.map((f, i)=>(
+                    <li key={i} className="flex gap-2 text-sm text-[#AAAAAA]">
+                      <Check className="w-4 h-4 text-[#00E676] flex-shrink-0" /> {f}
+                    </li>
+                 ))}
+              </ul>
+              <div className="flex justify-between items-center pb-2 mt-auto">
+                 <div className="font-bold text-2xl flex items-start"><span className="text-sm mt-1 mr-1">R$</span>{av.price}<span className="text-sm mt-1">{av.cents}</span></div>
+                 <a href={av.link} className="text-[#00E676] font-semibold text-sm hover:underline py-2 px-4 rounded-full bg-[#00E676]/10 border border-[#00E676]/20">Comprar avulso</a>
+              </div>
+            </div>
+         ))}
+      </div>
+    </section>
+  );
+}), { ssr: true }); // Need SSR for SEO, but JS hydration is isolated
+
+const FinalCTA = dynamic(() => Promise.resolve(() => {
+  return (
+    <section className="py-32 px-6 text-center max-w-[800px] mx-auto relative">
+      <div className="absolute inset-0 bg-[#00E676] opacity-[0.03] blur-[100px] rounded-full"></div>
+      <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">{siteConfig.finalCta.title}</h2>
+      <p className="text-xl text-[#AAAAAA] mb-10 max-w-2xl mx-auto leading-relaxed">
+        {siteConfig.finalCta.subtitle}
+      </p>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <a href={siteConfig.global.checkoutUrl} className="bg-[#00E676] text-[#0F0F0F] font-extrabold text-[18px] px-10 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full max-w-md shadow-[0_0_20px_rgba(0,230,118,0.3)]">
+          {siteConfig.finalCta.buttonText}
+        </a>
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+import Link from "next/link";
+import { siteConfig } from "../site.config";
+
+export default function LandingPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "GymGIFs",
+    "description": siteConfig.seo.description,
+    "image": siteConfig.seo.openGraph.images[0].url,
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "BRL",
+      "price": siteConfig.pricing.mainCard.price + "." + siteConfig.pricing.mainCard.cents.replace(',', ''),
+      "availability": "https://schema.org/InStock",
+      "url": siteConfig.seo.url
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "2400"
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": siteConfig.faq.items.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    }))
+  };
+
+  const [timeLeft, setTimeLeft] = useState({ hours: 12, minutes: 45, seconds: 0 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        if (seconds > 0) seconds--;
+        else if (minutes > 0) { minutes--; seconds = 59; }
+        else if (hours > 0) { hours--; minutes = 59; seconds = 59; }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#0F0F0F] text-white selection:bg-[#00E676] selection:text-[#0F0F0F] font-['Inter',system-ui] pb-20 md:pb-0 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <header>
+        <Hero />
+      </header>
+      <main>
+        <TargetAudience />
+        <ProductPreview />
+        <Advantages />
+        <Testimonials />
+        <CountdownBanner timeLeft={timeLeft} />
+        <Pricing />
+        <FAQ />
+        <FinalCTA />
+      </main>
+      <Footer />
+      <StickyMobileCTA />
+    </div>
+  );
+}
+
+function StickyMobileCTA() {
+  return (
+    <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#0a0a0a]/95 backdrop-blur-md border-t border-white/10 p-4 z-40">
+      <a href={siteConfig.global.checkoutUrl} className="bg-[#00E676] text-[#0F0F0F] font-extrabold text-[16px] py-4 rounded-xl hover:bg-[#00C863] transition-all w-full flex justify-center items-center shadow-[0_0_20px_rgba(0,230,118,0.2)]">
+        {siteConfig.hero.ctaPrimary}
+      </a>
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 overflow-hidden border-b border-white/5">
+      {/* Background visual flair */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00E676] opacity-[0.05] blur-[120px] rounded-[100%] pointer-events-none"></div>
+      
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
+        
+        {/* Left Column - Copy & Conversions */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0F0F0F] border border-[#00E676]/20 rounded-full text-sm font-semibold mb-8 shadow-[0_0_15px_rgba(0,230,118,0.1)]">
+            <span>{siteConfig.hero.socialProof.stars}</span>
+            <span className="text-[#333] hidden sm:inline">|</span>
+            <span className="text-[#AAAAAA]">{siteConfig.hero.socialProof.text}</span>
+          </div>
+
+          <h1 className="text-4xl md:text-[52px] font-extrabold leading-[1.1] mb-6 tracking-tight text-white drop-shadow-sm">
+            {siteConfig.hero.headline}
+          </h1>
+          
+          <p className="text-lg md:text-xl text-[#AAAAAA] mb-10 leading-relaxed max-w-2xl">
+            {siteConfig.hero.subtitle}
+          </p>
+          
+          <ul className="flex flex-col gap-4 text-left mb-10 text-base md:text-lg text-white font-medium w-full max-w-xl">
+            {siteConfig.hero.benefits.map((bullet, idx) => (
+              <li key={idx} className="flex items-start gap-3">
+                 <CheckCircle className="text-[#00E676] w-6 h-6 flex-shrink-0 mt-0.5" /> 
+                 <span className="leading-snug">{bullet}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <div className="w-full max-w-md flex flex-col gap-4">
+            <a href={siteConfig.global.checkoutUrl} className="bg-[#00E676] text-[#0F0F0F] font-extrabold text-[20px] px-8 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full shadow-[0_0_30px_rgba(0,230,118,0.3)] flex justify-center items-center">
+              {siteConfig.hero.ctaPrimary}
+            </a>
+            
+            <div className="flex justify-center items-center gap-2 text-sm text-[#AAAAAA] font-medium mb-2">
+              <Lock className="w-4 h-4 text-[#00E676]" /> {siteConfig.hero.ctaPrimarySub}
+            </div>
+          </div>
+
+          {/* Urgency & Anchor */}
+          <div className="mt-10 p-5 rounded-2xl bg-gradient-to-r from-[#1A1A1A] to-[#0F0F0F] border border-[#00E676]/20 w-full max-w-xl text-left">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="font-extrabold text-[#00E676] text-sm uppercase tracking-wider">{siteConfig.hero.urgency.title}</span>
+            </div>
+            <p className="text-sm font-semibold text-white mb-4">{siteConfig.hero.urgency.subtitle}</p>
+            <p className="text-xs text-[#888888] leading-relaxed">
+              <span className="text-white font-medium">Ancoragem:</span> {siteConfig.hero.valueAnchor}
+            </p>
+          </div>
+        </div>
+
+        {/* Right Column - Visual Grid Mockup */}
+        <div className="w-full relative flex justify-center items-center pt-10 lg:pt-0">
+           <div className="grid grid-cols-2 gap-4 w-full max-w-[500px] relative">
+              {siteConfig.hero.images.map((img, idx) => (
+                <div key={idx} className={`relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 aspect-[4/5] shadow-2xl transition-transform hover:scale-[1.03] duration-500 ${idx % 2 !== 0 ? 'mt-8 -mb-8' : ''}`}>
+                  <Image src={img} alt={`Preview ${idx+1}`} fill sizes="(max-width: 768px) 50vw, 250px" priority={idx < 2} quality={85} className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                  <div className="absolute top-3 right-3 bg-[#00E676] text-[#0F0F0F] text-[10px] uppercase font-bold py-1 px-2 rounded-md">
+                    GIF HD
+                  </div>
+                </div>
+              ))}
+              
+              {/* Floating badge over images */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0F0F0F]/90 backdrop-blur-md border border-[#00E676]/30 px-6 py-4 rounded-2xl flex flex-col items-center shadow-[0_0_30px_rgba(0,0,0,0.8)] z-20">
+                 <span className="text-3xl font-extrabold text-white mb-1">2.000+</span>
+                 <span className="text-[#00E676] text-xs uppercase font-bold tracking-widest">Organizados</span>
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const TargetAudience = dynamic(() => Promise.resolve(() => {
+  const getIcon = (name: string) => {
+    switch(name) {
+      case 'dumbbell': return <Dumbbell className="w-8 h-8 text-[#00E676]"/>;
+      case 'camera': return <Camera className="w-8 h-8 text-[#00E676]"/>;
+      case 'user': return <User className="w-8 h-8 text-[#00E676]"/>;
+      case 'graduation-cap': return <GraduationCap className="w-8 h-8 text-[#00E676]"/>;
+      default: return <CheckCircle className="w-8 h-8 text-[#00E676]"/>;
+    }
+  };
+
+  return (
+    <section className="py-24 px-6 max-w-[1100px] mx-auto border-t border-white/5">
+      <h2 className="text-[32px] font-bold text-center mb-16">{siteConfig.targetAudience.title}</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {siteConfig.targetAudience.cards.map((card, i) => (
+           <div key={i} className="bg-[#1A1A1A] border border-[rgba(255,255,255,0.05)] p-8 rounded-xl hover:border-[rgba(255,255,255,0.08)] transition-colors">
+            <div className="bg-[#00E676]/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+              {getIcon(card.icon)}
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-white">{card.title}</h3>
+            <p className="text-[#AAAAAA] leading-relaxed">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+const PreviewBlock = ({ src, alt, is3D }: { src: string; alt: string; is3D?: boolean }) => {
+  return (
+    <div className="w-full relative h-[200px] mb-4 overflow-hidden rounded-2xl bg-[#EFEFEF] flex items-center justify-center p-4">
+      <Image 
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 400px"
+        className={'object-contain ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
+        referrerPolicy="no-referrer"
+      />
+    </div>
+  );
+};
+
+const ProductPreview = dynamic(() => Promise.resolve(() => {
+  return (
+    <section className="py-24 px-6 bg-[linear-gradient(180deg,#0a0a0a_0%,#0F0F0F_100%)]">
+      <div className="max-w-[1100px] mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-[32px] font-bold mb-4">{siteConfig.productPreview.title}</h2>
+          <p className="text-[#AAAAAA] text-lg max-w-2xl mx-auto">{siteConfig.productPreview.subtitle}</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {siteConfig.productPreview.categories.map((cat, i) => (
+             <div key={i} className="bg-[#FAFAFA] rounded-[32px] overflow-hidden flex flex-col h-full items-center text-left p-6 pb-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
+               <PreviewBlock src={cat.image} alt={cat.title} is3D={cat.is3D} />
+               <div className="mt-2 w-full px-2 flex flex-col flex-1">
+                 <h3 className="text-[20px] font-bold text-[#111] leading-tight mb-4 text-center">{cat.title}</h3>
+                 <ul className="space-y-3 mt-auto">
+                   {cat.bullets.map((bullet, idx) => (
+                     <li key={idx} className="flex items-start text-[14px] text-[#444] font-medium leading-relaxed">
+                       <Check className="w-5 h-5 text-[#00E676] mr-2 flex-shrink-0" />
+                       {bullet}
+                     </li>
+                   ))}
+                 </ul>
+               </div>
+            </div>
+          ))}
+
+          <div className="bg-[#1C1D1F] border-none rounded-[32px] flex flex-col justify-center items-center text-center p-8 group relative overflow-hidden h-full min-h-[300px]">
+            <div className="absolute inset-0 bg-[#00E676]/5 animate-pulse"></div>
+            <div className="w-20 h-20 rounded-full bg-[#00E676]/20 flex items-center justify-center mb-6 relative z-10 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
+               <Gift className="w-10 h-10 text-[#00E676]" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 relative z-10">{siteConfig.productPreview.bonusTitle}</h3>
+            <p className="text-[#AAAAAA] text-sm relative z-10 max-w-[200px]">{siteConfig.productPreview.bonusDesc}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+const Advantages = dynamic(() => Promise.resolve(() => {
+  return (
+    <section className="py-24 px-6 max-w-[1100px] mx-auto">
+      <h2 className="text-[32px] font-bold text-center mb-16">{siteConfig.advantages.title}</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+        {siteConfig.advantages.items.map((text, i) => (
+          <div key={i} className="flex items-center gap-4 bg-[#1A1A1A] p-5 rounded-xl border border-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.02)] transition-colors">
+            <div className="bg-[#00E676]/10 p-2.5 rounded-xl flex-shrink-0">
+              <Check className="w-5 h-5 text-[#00E676]" />
+            </div>
+            <span className="text-white/90 font-medium text-[15px]">{text}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+const Testimonials = dynamic(() => Promise.resolve(() => {
+  return (
+    <section className="py-24 px-6 bg-[linear-gradient(0deg,#0a0a0a_0%,#0F0F0F_100%)]">
+      <div className="max-w-[1100px] mx-auto">
+        <h2 className="text-[32px] font-bold text-center mb-16">{siteConfig.testimonials.title}</h2>
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          {(siteConfig.testimonials as any).screenshots.map((src: string, i: number) => (
+            <div key={i} className="break-inside-avoid relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-white/5 hover:scale-[1.01] transition-transform duration-300">
+               <img 
+                src={src} 
+                alt={`Depoimento WhatsApp ${i + 1}`} 
+                className="w-full h-auto block"
+                loading="lazy"
+               />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+const FAQ = dynamic(() => Promise.resolve(() => {
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <section className="py-24 px-6 max-w-[800px] mx-auto border-t border-white/5">
+      <h2 className="text-[32px] font-bold text-center mb-16">{siteConfig.faq.title}</h2>
+      <div className="space-y-4">
+        {siteConfig.faq.items.map((item, i) => (
+          <div key={i} className="bg-[#1A1A1A] border border-[rgba(255,255,255,0.05)] rounded-xl overflow-hidden hover:border-[rgba(255,255,255,0.1)] transition-colors">
+            <button 
+              className="w-full px-6 py-5 text-left font-bold flex justify-between items-center focus:outline-none"
+              onClick={() => setOpen(open === i ? null : i)}
+            >
+              {item.q}
+              <ChevronDown className={`w-5 h-5 text-[#AAAAAA] transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`px-6 text-[#AAAAAA] leading-relaxed transition-all duration-300 ${open === i ? 'pb-5 max-h-40 opacity-100' : 'max-h-0 opacity-0 py-0 overflow-hidden'}`}>
+              {item.a}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}), { ssr: true });
+
+function Footer() {
+  return (
+    <footer className="bg-[#0F0F0F] border-t border-[rgba(255,255,255,0.05)] py-12 px-6 text-center">
+      <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-left max-w-md">
+          <p className="text-[#AAAAAA] text-sm mb-2 font-bold">{siteConfig.footer.copyright}</p>
+          <p className="text-[11px] text-[#666666] leading-tight mb-4">
+            {siteConfig.footer.disclaimer}
+          </p>
+          <p className="text-[#AAAAAA] text-xs">
+            Desenvolvido por <a href="https://phstatic.com.br" target="_blank" rel="noopener noreferrer" className="text-[#00E676] hover:underline">phstatic.com.br</a>
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <Link href="/termos" className="text-sm text-[#AAAAAA] hover:text-white font-medium">Termos de Uso</Link>
+          <span className="text-[#333]">•</span>
+          <Link href="/privacidade" className="text-sm text-[#AAAAAA] hover:text-white font-medium">Políticas de Privacidade</Link>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,4 +1,4 @@
-export const siteConfig = {
+﻿export const siteConfig = {
   seo: {
     title: "GymGIFs | +2.000 Exercícios em HD",
     description: "A maior biblioteca de GIFs de exercícios do Brasil. Otimize suas planilhas de academia, consultoria online e redes sociais com animações de execução perfeita.",
@@ -73,37 +73,37 @@ export const siteConfig = {
       { 
         title: "Pessoas Reais (1000 GIFs)", 
         bullets: ["Exercícios em estúdio fotográfico", "Academia, Funcional e Alongamento", "Ideal para treinos visuais 100% realistas"],
-        image: "https://i.ibb.co/tpyC08L1/0018-5-1.png",
+        image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: false
       },
       { 
         title: "Bonecos 3D - Academia (497 GIFs)", 
         bullets: ["Máquinas e peso livre", "Organizado por músculos (Peito, Costas, etc)", "Bônus especial de exercícios de Cardio"],
-        image: "https://i.ibb.co/sBhvpBY/0017-5-1-300x169.png",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: true
       },
       { 
         title: "Funcional e HIIT (196 GIFs)", 
         bullets: ["Alta intensidade e resistência", "Movimentos corporais dinâmicos", "Queima de gordura e cardiorrespiratório"],
-        image: "https://i.ibb.co/Mxcyb5Vq/0016-497-Gifs-de-Academia-2-1.png",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: true
       },
       { 
         title: "Mobilidade e Alongamento (136 GIFs)", 
         bullets: ["Prevenção aguda de lesões", "Alívio de tensão articular e muscular", "Rotinas de soltura pré e pós-treino"],
-        image: "https://i.ibb.co/Kpxnsx8D/0015-497-Gifs-de-Academia-2-1-300x169.png",
+        image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: true
       },
       { 
         title: "Calistenia em Barras (122 GIFs)", 
         bullets: ["Treinamento 100% com peso corporal", "Domínio de Força e Agilidade", "Iniciante ao Avançado (Skills)"],
-        image: "https://i.ibb.co/wrPnbPH9/0014-497-Gifs-de-Academia-1.png",
+        image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: true
       },
       { 
         title: "Treino Crossfit (67 GIFs)", 
         bullets: ["Movimentos de LPO (Levantamento de Peso)", "Caixas, Cordas navais e Kettlebells", "Resistência de alta performance"],
-        image: "https://i.ibb.co/yczS7DQQ/0012-4-1-1.png",
+        image: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=600&h=400&q=80",
         is3D: true
       },
     ],
