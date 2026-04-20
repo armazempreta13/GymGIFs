@@ -320,16 +320,18 @@ const TargetAudience = dynamic(() => Promise.resolve(() => {
 
 const PreviewBlock = ({ src, alt, is3D }: { src: string; alt: string; is3D?: boolean }) => {
   return (
-    <div className="w-full relative h-[200px] mb-4 overflow-hidden rounded-2xl bg-[#EFEFEF] flex items-center justify-center">
-      <Image 
-        src={src}
-        alt={alt}
-        fill
-        sizes="(max-width: 768px) 100vw, 400px"
-        style={{ objectFit: "contain", objectPosition: "center" }}
-        className={'object-contain p-4 ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
-        referrerPolicy="no-referrer"
-      />
+    <div className="w-full mb-6 rounded-[28px] bg-white px-6 pt-6">
+      <div className="relative h-[160px] w-full">
+        <Image 
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 400px"
+          style={{ objectFit: "contain", objectPosition: "center" }}
+          className={'object-contain ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
+          referrerPolicy="no-referrer"
+        />
+      </div>
     </div>
   );
 };
@@ -345,20 +347,17 @@ const ProductPreview = dynamic(() => Promise.resolve(() => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {siteConfig.productPreview.categories.map((cat, i) => (
-             <div key={i} className="bg-[#FAFAFA] rounded-[32px] overflow-hidden flex flex-col h-full items-center text-left p-6 pb-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
+             <div key={i} className="bg-white rounded-[32px] overflow-hidden flex flex-col h-full items-center text-center px-8 pt-8 pb-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
                <PreviewBlock src={cat.image} alt={cat.title} is3D={cat.is3D} />
-               <div className="mt-2 w-full px-2 flex flex-col flex-1">
-                 <h3 className="text-[20px] font-bold text-[#111] leading-tight mb-4 text-center">{cat.title}</h3>
-                 <ul className="space-y-3 mt-auto">
-                   {cat.bullets.map((bullet, idx) => (
-                     <li key={idx} className="flex items-start text-[14px] text-[#444] font-medium leading-relaxed">
-                       <Check className="w-5 h-5 text-[#00E676] mr-2 flex-shrink-0" />
-                       {bullet}
-                     </li>
-                   ))}
-                 </ul>
+               <div className="w-full flex flex-col flex-1">
+                 <h3 className="text-[18px] font-extrabold text-black leading-snug tracking-wide uppercase mb-6">
+                   {cat.title}
+                 </h3>
+                 <p className="text-[11px] text-black/70 leading-relaxed tracking-wide uppercase max-w-[320px] mx-auto mt-auto">
+                   {cat.bullets.join(". ")}.
+                 </p>
                </div>
-            </div>
+             </div>
           ))}
 
           <div className="bg-[#1C1D1F] border-none rounded-[32px] flex flex-col justify-center items-center text-center p-8 group relative overflow-hidden h-full min-h-[300px]">
