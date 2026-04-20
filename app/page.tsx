@@ -345,7 +345,7 @@ const ProductPreview = dynamic(() => Promise.resolve(() => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {siteConfig.productPreview.categories.map((cat, i) => (
              <div key={i} className="bg-[#FAFAFA] rounded-[32px] overflow-hidden flex flex-col h-full items-center text-left p-6 pb-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
-               <PreviewBlock src={cat.image} alt={cat.title} is3D={cat.is3D} />
+               <PreviewBlock src={cat.images[0]} alt={cat.title} is3D={cat.is3D} />
                <div className="mt-2 w-full px-2 flex flex-col flex-1">
                  <h3 className="text-[20px] font-bold text-[#111] leading-tight mb-4 text-center">{cat.title}</h3>
                  <ul className="space-y-3 mt-auto">
