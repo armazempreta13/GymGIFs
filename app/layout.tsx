@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.seo.openGraph.siteName}`,
   },
   description: siteConfig.seo.description,
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+  },
   keywords: siteConfig.seo.keywords,
   authors: [{ name: "GymGIFs" }],
   creator: "GymGIFs",
