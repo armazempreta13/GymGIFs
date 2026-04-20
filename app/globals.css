@@ -3,3 +3,17 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Fallback base styles (helps even if Tailwind doesn't load for any reason) */
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f0f0f;
+  color: #ffffff;
+  font-family: var(--font-sans);
+}

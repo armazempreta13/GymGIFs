@@ -36,26 +36,26 @@ export const siteConfig = {
       stars: "⭐ 4.9/5 por +2.400 praticantes",
       text: "🔥 Usado diariamente para treinar com segurança e técnica"
     },
-    headline: "Pare de treinar errado — aprenda a execução perfeita com 2.000+ GIFs na palma da mão",
-    subtitle: "Chega de depender de instrutor ou vídeos demorados. Tenha acesso a uma biblioteca imediata, separada por músculos, e garanta resultados mais rápidos sem se machucar.",
+    headline: "Domine a Execução Perfeita: 2.000+ Exercícios em GIF na Palma da Sua Mão",
+    subtitle: "Chega de depender de vídeos longos ou instrutores indisponíveis. Tenha uma biblioteca imediata, organizada tecnicamente e pronta para levar seus treinos a outro nível, garantindo segurança e resultados.",
     benefits: [
       "2.000+ execuções perfeitas (acesso rápido pelo celular)",
-      "Proteja sua lombar e articulações treinando certo",
-      "Acesso vitalício — pague uma vez e leve pra academia sempre"
+      "Proteja suas articulações treinando com a técnica correta",
+      "Acesso vitalício — pague uma vez e tenha acesso perpétuo"
     ],
-    ctaPrimary: "LIBERAR ACESSO IMEDIATO",
-    ctaPrimarySub: "🔒 Acesso liberado automaticamente após o pagamento",
+    ctaPrimary: "QUERO ACESSO COMPLETO",
+    ctaPrimarySub: "🔒 Acesso liberado instantaneamente",
     urgency: {
-      title: "🔥 Oferta especial disponível hoje",
-      subtitle: "⏳ Acesso vitalício com condição promocional por tempo limitado"
+      title: "🔥 Oferta especial ativa",
+      subtitle: "⏳ Acesso vitalício com desconto por tempo limitado"
     },
-    valueAnchor: "Mais de 2.000 exercícios organizados em um só lugar → economize centenas de horas de busca e montagem de treino",
-    images: [
-      "https://i.ibb.co/WpDg39n6/e8770ea76dd3.jpg",
-      "https://i.ibb.co/zVLSTWwJ/f61fbbbbd1e0.jpg",
-      "https://i.ibb.co/NgJxCS1x/744cd7a913a0.jpg",
-      "https://i.ibb.co/Xr1Q7s5T/0fd72c1b8941.jpg"
-    ]
+    valueAnchor: "Mais de 2.000 exercícios organizados e metodologicamente classificados para otimizar 100% dos seus treinos.",
+    trustBar: {
+      enabled: true,
+      providerLabel: "Kirvano",
+      methods: ["pix", "cartão de crédito", "boleto bancário"],
+      disclaimer: "Ambiente blindado. Seus dados de pagamento estão protegidos e não ficam armazenados conosco."
+    }
   },
   targetAudience: {
     title: "Para quem é o GymGIFs?",
@@ -67,8 +67,8 @@ export const siteConfig = {
     ]
   },
   productPreview: {
-    title: "Veja exatamente o que você vai receber",
-    subtitle: "Esqueça imagens estáticas. Dê vida aos seus treinos com animações perfeitas, separadas carinhosamente em pastas por modalidade.",
+    title: "O que você vai encontrar no GymGIFs?",
+    subtitle: "Explore nossa curadoria detalhada e dê vida aos seus treinos com animações de alta qualidade, focadas em precisão biomecânica.",
     categories: [
       { 
         title: "Pessoas Reais (1000 GIFs)", 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import * as motion from "motion/react-client";
 import { 
   CheckCircle, 
   Check, 
@@ -15,6 +16,11 @@ import {
   Lock,
   Gift
 } from "lucide-react";
+import { Hero } from "../components/Hero";
+import { TrustBar } from "../components/TrustBar";
+import { ProductPreview } from "../components/ProductPreview";
+import { SecurityBadge } from "../components/SecurityBadge";
+
 
 // For performance, defer heavy interactivity sections
 const CountdownBanner = dynamic(() => Promise.resolve(({ timeLeft }: any) => {
@@ -66,13 +72,16 @@ const Pricing = dynamic(() => Promise.resolve(() => {
                 <span className="text-2xl mt-3 mr-2">R$</span>{mainCard.price}<span className="text-2xl mt-3">{mainCard.cents}</span>
              </div>
              <p className="text-[#AAAAAA] text-sm mb-8">{mainCard.paymentMethod}</p>
-             <a href={mainCard.link} className="bg-[#00E676] text-[#0F0F0F] font-extrabold px-8 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full text-lg shadow-[0_0_20px_rgba(0,230,118,0.3)] block">
-               {mainCard.ctaText}
-             </a>
-             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-[#AAAAAA] font-medium bg-white/5 px-4 py-2 rounded-full">
-               <ShieldCheck className="w-5 h-5 text-[#00E676]"/> 
-               {mainCard.guarantee}
-             </div>
+              <a href={mainCard.link} className="bg-[#00E676] text-[#0F0F0F] font-extrabold px-8 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full text-lg shadow-[0_0_20px_rgba(0,230,118,0.3)] block">
+                {mainCard.ctaText}
+              </a>
+              <div className="mt-4 flex flex-col items-center gap-3">
+                <SecurityBadge variant="stamp" />
+                <div className="flex items-center justify-center gap-2 text-sm text-[#AAAAAA] font-medium bg-white/5 px-4 py-2 rounded-full">
+                  <ShieldCheck className="w-5 h-5 text-[#00E676]" />
+                  {mainCard.guarantee}
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -183,6 +192,7 @@ export default function LandingPage() {
         <Hero />
       </header>
       <main>
+        <TrustBar />
         <TargetAudience />
         <ProductPreview />
         <Advantages />
@@ -205,66 +215,6 @@ function StickyMobileCTA() {
         {siteConfig.hero.ctaPrimary}
       </a>
     </div>
-  );
-}
-
-function Hero() {
-  return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 overflow-hidden border-b border-white/5">
-      {/* Background visual flair */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00E676] opacity-[0.05] blur-[120px] rounded-[100%] pointer-events-none"></div>
-      
-      <div className="max-w-[1200px] mx-auto relative z-10">
-        
-        {/* Left Column - Copy & Conversions */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0F0F0F] border border-[#00E676]/20 rounded-full text-sm font-semibold mb-8 shadow-[0_0_15px_rgba(0,230,118,0.1)]">
-            <span>{siteConfig.hero.socialProof.stars}</span>
-            <span className="text-[#333] hidden sm:inline">|</span>
-            <span className="text-[#AAAAAA]">{siteConfig.hero.socialProof.text}</span>
-          </div>
-
-          <h1 className="text-4xl md:text-[52px] font-extrabold leading-[1.1] mb-6 tracking-tight text-white drop-shadow-sm">
-            {siteConfig.hero.headline}
-          </h1>
-          
-          <p className="text-lg md:text-xl text-[#AAAAAA] mb-10 leading-relaxed max-w-2xl">
-            {siteConfig.hero.subtitle}
-          </p>
-          
-          <ul className="flex flex-col gap-4 text-left mb-10 text-base md:text-lg text-white font-medium w-full max-w-xl mx-auto">
-            {siteConfig.hero.benefits.map((bullet, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                 <CheckCircle className="text-[#00E676] w-6 h-6 flex-shrink-0 mt-0.5" /> 
-                 <span className="leading-snug">{bullet}</span>
-              </li>
-            ))}
-          </ul>
-          
-          <div className="w-full max-w-md flex flex-col gap-4">
-            <a href={siteConfig.global.checkoutUrl} className="bg-[#00E676] text-[#0F0F0F] font-extrabold text-[20px] px-8 py-5 rounded-xl hover:scale-[1.02] hover:bg-[#00C863] transition-all w-full shadow-[0_0_30px_rgba(0,230,118,0.3)] flex justify-center items-center">
-              {siteConfig.hero.ctaPrimary}
-            </a>
-            
-            <div className="flex justify-center items-center gap-2 text-sm text-[#AAAAAA] font-medium mb-2">
-              <Lock className="w-4 h-4 text-[#00E676]" /> {siteConfig.hero.ctaPrimarySub}
-            </div>
-          </div>
-
-          {/* Urgency & Anchor */}
-          <div className="mt-10 p-5 rounded-2xl bg-gradient-to-r from-[#1A1A1A] to-[#0F0F0F] border border-[#00E676]/20 w-full max-w-xl text-left">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="font-extrabold text-[#00E676] text-sm uppercase tracking-wider">{siteConfig.hero.urgency.title}</span>
-            </div>
-            <p className="text-sm font-semibold text-white mb-4">{siteConfig.hero.urgency.subtitle}</p>
-            <p className="text-xs text-[#888888] leading-relaxed">
-              <span className="text-white font-medium">Ancoragem:</span> {siteConfig.hero.valueAnchor}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -297,61 +247,6 @@ const TargetAudience = dynamic(() => Promise.resolve(() => {
   );
 }), { ssr: true });
 
-const PreviewBlock = ({ src, alt, is3D }: { src: string; alt: string; is3D?: boolean }) => {
-  return (
-    <div className="w-full mb-6 rounded-[28px] bg-white px-6 pt-6">
-      <div className="relative h-[160px] w-full">
-        <Image 
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 768px) 100vw, 400px"
-          style={{ objectFit: "contain", objectPosition: "center" }}
-          className={'object-contain ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
-          referrerPolicy="no-referrer"
-        />
-      </div>
-    </div>
-  );
-};
-
-const ProductPreview = dynamic(() => Promise.resolve(() => {
-  return (
-    <section className="py-24 px-6 bg-[linear-gradient(180deg,#0a0a0a_0%,#0F0F0F_100%)]">
-      <div className="max-w-[1100px] mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-[32px] font-bold mb-4">{siteConfig.productPreview.title}</h2>
-          <p className="text-[#AAAAAA] text-lg max-w-2xl mx-auto">{siteConfig.productPreview.subtitle}</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {siteConfig.productPreview.categories.map((cat, i) => (
-             <div key={i} className="bg-white rounded-[32px] overflow-hidden flex flex-col h-full items-center text-center px-8 pt-8 pb-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
-               <PreviewBlock src={cat.image} alt={cat.title} is3D={cat.is3D} />
-               <div className="w-full flex flex-col flex-1">
-                 <h3 className="text-[18px] font-extrabold text-black leading-snug tracking-wide uppercase mb-6">
-                   {cat.title}
-                 </h3>
-                 <p className="text-[11px] text-black/70 leading-relaxed tracking-wide uppercase max-w-[320px] mx-auto mt-auto">
-                   {cat.bullets.join(". ")}.
-                 </p>
-               </div>
-             </div>
-          ))}
-
-          <div className="bg-[#1C1D1F] border-none rounded-[32px] flex flex-col justify-center items-center text-center p-8 group relative overflow-hidden h-full min-h-[300px]">
-            <div className="absolute inset-0 bg-[#00E676]/5 animate-pulse"></div>
-            <div className="w-20 h-20 rounded-full bg-[#00E676]/20 flex items-center justify-center mb-6 relative z-10 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
-               <Gift className="w-10 h-10 text-[#00E676]" />
-            </div>
-            <h3 className="text-2xl font-bold mb-3 relative z-10">{siteConfig.productPreview.bonusTitle}</h3>
-            <p className="text-[#AAAAAA] text-sm relative z-10 max-w-[200px]">{siteConfig.productPreview.bonusDesc}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}), { ssr: true });
 
 const Advantages = dynamic(() => Promise.resolve(() => {
   return (
