@@ -214,10 +214,10 @@ function Hero() {
       {/* Background visual flair */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00E676] opacity-[0.05] blur-[120px] rounded-[100%] pointer-events-none"></div>
       
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
+      <div className="max-w-[1200px] mx-auto relative z-10">
         
         {/* Left Column - Copy & Conversions */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0F0F0F] border border-[#00E676]/20 rounded-full text-sm font-semibold mb-8 shadow-[0_0_15px_rgba(0,230,118,0.1)]">
             <span>{siteConfig.hero.socialProof.stars}</span>
@@ -233,7 +233,7 @@ function Hero() {
             {siteConfig.hero.subtitle}
           </p>
           
-          <ul className="flex flex-col gap-4 text-left mb-10 text-base md:text-lg text-white font-medium w-full max-w-xl">
+          <ul className="flex flex-col gap-4 text-left mb-10 text-base md:text-lg text-white font-medium w-full max-w-xl mx-auto">
             {siteConfig.hero.benefits.map((bullet, idx) => (
               <li key={idx} className="flex items-start gap-3">
                  <CheckCircle className="text-[#00E676] w-6 h-6 flex-shrink-0 mt-0.5" /> 
@@ -262,27 +262,6 @@ function Hero() {
               <span className="text-white font-medium">Ancoragem:</span> {siteConfig.hero.valueAnchor}
             </p>
           </div>
-        </div>
-
-        {/* Right Column - Visual Grid Mockup */}
-        <div className="w-full relative flex justify-center items-center pt-10 lg:pt-0">
-           <div className="grid grid-cols-2 gap-4 w-full max-w-[500px] relative">
-              {siteConfig.hero.images.map((img, idx) => (
-                <div key={idx} className={`relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 aspect-[4/5] shadow-2xl transition-transform hover:scale-[1.03] duration-500 ${idx % 2 !== 0 ? 'mt-8 -mb-8' : ''}`}>
-                  <Image src={img} alt={`Preview ${idx+1}`} fill sizes="(max-width: 768px) 50vw, 250px" priority={idx < 2} quality={85} className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-transparent opacity-80 pointer-events-none"></div>
-                  <div className="absolute top-3 right-3 bg-[#00E676] text-[#0F0F0F] text-[10px] uppercase font-bold py-1 px-2 rounded-md">
-                    GIF HD
-                  </div>
-                </div>
-              ))}
-              
-              {/* Floating badge over images */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0F0F0F]/90 backdrop-blur-md border border-[#00E676]/30 px-6 py-4 rounded-2xl flex flex-col items-center shadow-[0_0_30px_rgba(0,0,0,0.8)] z-20">
-                 <span className="text-3xl font-extrabold text-white mb-1">2.000+</span>
-                 <span className="text-[#00E676] text-xs uppercase font-bold tracking-widest">Organizados</span>
-              </div>
-           </div>
         </div>
       </div>
     </section>
