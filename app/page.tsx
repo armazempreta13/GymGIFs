@@ -326,7 +326,8 @@ const PreviewBlock = ({ src, alt, is3D }: { src: string; alt: string; is3D?: boo
         alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, 400px"
-        className={'object-cover ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
+        style={{ objectFit: "contain", objectPosition: "center" }}
+        className={'object-contain p-4 ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
         referrerPolicy="no-referrer"
       />
     </div>
