@@ -1,7 +1,15 @@
 node_modules/
 .next/
+out/
 coverage/
 .DS_Store
 *.log
 .env*
 !.env.example
+
+# OpenNext
+.open-next
+
+# Wrangler / OpenNext local state & secrets
+.wrangler/
+.dev.vars
