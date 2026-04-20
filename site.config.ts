@@ -73,37 +73,37 @@ export const siteConfig = {
       { 
         title: "Pessoas Reais (1000 GIFs)", 
         bullets: ["Exercícios em estúdio fotográfico", "Academia, Funcional e Alongamento", "Ideal para treinos visuais 100% realistas"],
-        image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/vW51Hkz/pessoas-reais-1.jpg", "https://i.ibb.co/0jkB1mTT/pessoas-reais-2.jpg"],
         is3D: false
       },
       { 
         title: "Bonecos 3D - Academia (497 GIFs)", 
         bullets: ["Máquinas e peso livre", "Organizado por músculos (Peito, Costas, etc)", "Bônus especial de exercícios de Cardio"],
-        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/VYxygk5k/bonecos-academia-1.jpg", "https://i.ibb.co/R4sXMsnx/bonecos-academia-2.jpg"],
         is3D: true
       },
       { 
         title: "Funcional e HIIT (196 GIFs)", 
         bullets: ["Alta intensidade e resistência", "Movimentos corporais dinâmicos", "Queima de gordura e cardiorrespiratório"],
-        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/cSMMGSZr/funcional-hiit-1.jpg", "https://i.ibb.co/9kHP4Hdh/funcional-hiit-2.jpg"],
         is3D: true
       },
       { 
         title: "Mobilidade e Alongamento (136 GIFs)", 
         bullets: ["Prevenção aguda de lesões", "Alívio de tensão articular e muscular", "Rotinas de soltura pré e pós-treino"],
-        image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/yB7x2zkr/mobilidade-1.jpg", "https://i.ibb.co/zTXW1HRK/mobilidade-2.jpg"],
         is3D: true
       },
       { 
         title: "Calistenia em Barras (122 GIFs)", 
         bullets: ["Treinamento 100% com peso corporal", "Domínio de Força e Agilidade", "Iniciante ao Avançado (Skills)"],
-        image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/jZ8RqYGW/calistenia-1.jpg", "https://i.ibb.co/nWTsqWJ/calistenia-2.jpg"],
         is3D: true
       },
       { 
         title: "Treino Crossfit (67 GIFs)", 
         bullets: ["Movimentos de LPO (Levantamento de Peso)", "Caixas, Cordas navais e Kettlebells", "Resistência de alta performance"],
-        image: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=600&h=400&q=80",
+        images: ["https://i.ibb.co/C3j2DqHH/crossfit-1.jpg", "https://i.ibb.co/N2wY0ZTG/crossfit-2.jpg"],
         is3D: true
       },
     ],
