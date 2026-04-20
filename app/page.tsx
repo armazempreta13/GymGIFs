@@ -320,13 +320,13 @@ const TargetAudience = dynamic(() => Promise.resolve(() => {
 
 const PreviewBlock = ({ src, alt, is3D }: { src: string; alt: string; is3D?: boolean }) => {
   return (
-    <div className="w-full relative h-[180px] lg:h-[200px] mb-6 overflow-hidden rounded-2xl bg-[#EFEFEF] flex items-center justify-center">
+    <div className="w-full relative h-[280px] lg:h-[320px] mb-6 overflow-hidden rounded-2xl bg-[#EFEFEF] flex items-center justify-center">
       <Image 
         src={src}
         alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, 400px"
-        className={'object-cover ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
+        className={'object-contain ' + (is3D ? 'grayscale contrast-[1.15] opacity-[0.85] mix-blend-multiply' : '')}
         referrerPolicy="no-referrer"
       />
     </div>
