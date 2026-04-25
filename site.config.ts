@@ -29,7 +29,7 @@ export const siteConfig = {
     }
   },
   global: {
-    checkoutUrl: "https://pay.kirvano.com/SEU_CHECKOUT_AQUI", // Link centralizado para o checkout
+    checkoutUrl: "https://pay.kirvano.com/62c8e989-bda9-4b7c-9646-300d901751af", // Link centralizado para o checkout
   },
   hero: {
     socialProof: {
